@@ -1,4 +1,9 @@
 function Jeu(description){
+// La création de l'objet 
+	if(!(this instanceof Jeu)) {
+		return new Jeu();
+	}
+
 	if(description === undefined || Object.keys(description) < 10) {
 		this.baseDeQuestions = {
 				'Colombie-Britannique' : "Victoria",
@@ -113,7 +118,7 @@ if(Jeu.prototype.debuter === undefined){
 		this.resultats = resultats;
 	};
 }
-var jeu = new Jeu({
+var jeuSansNew = Jeu({
 				'Colombie-Britannique' : "Victoria",
 				'Alberta'	: "Edmonton",
 				'Saskatchewan' : "Regina",		
@@ -124,9 +129,18 @@ var jeu = new Jeu({
 				'Nouveau-Brunswick' : "Fredericton",		
 				'Nouvelle-Écosse' : "Halifax",		
 				'Île-du-Prince-Édouard' : "Charlottetown"});
-jeu.debuter();
-console.log("Points: " + jeu.points + "\n");
-jeu.resultats.forEach(function(obj) {
+jeuSansNew.debuter();
+console.log("*************** Résultat du jeu ***************\nPoints: " + jeuSansNew.points + "\n");
+jeuSansNew.resultats.forEach(function(obj) {
+console.log('---------------------------------------------' +
+		   '\nQuestion: '+ obj['question'] +
+ 		  '\nRéponse de l\'usager: '+ obj['reponseUsager'] +
+ 		  '\nRéponse correcte: '+ obj['reponseCorrecte'])})
+
+var jeuAvecNew = new Jeu();
+jeuAvecNew.debuter();
+console.log("*************** Résultat du jeu ***************\nPoints: " + jeuAvecNew.points + "\n");
+jeuAvecNew.resultats.forEach(function(obj) {
 console.log('---------------------------------------------' +
 		   '\nQuestion: '+ obj['question'] +
  		  '\nRéponse de l\'usager: '+ obj['reponseUsager'] +
