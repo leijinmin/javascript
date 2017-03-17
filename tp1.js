@@ -1,7 +1,7 @@
 function Jeu(description){
 // La création de l'objet 
 	if(!(this instanceof Jeu)) {
-		return new Jeu();
+		return new Jeu(description);
 	}
 
 	if(description === undefined || Object.keys(description) < 10) {
@@ -62,10 +62,12 @@ if(Jeu.prototype.getQuestions === undefined){
 			// Obtenir un tableau de indices qui sont aléatoires
 			var indices = new Array(),
 				index;
+			
+			// Ça est pour test. Voir si l'on peut obtenir les questions correctement
+			if (Number.isInteger(nombre)) {maxIndex = (nombre > 0 && nombre <= gamme)? nombre : gamme}; 
+			
 
-			if(nombre !== undefined) maxIndex = nombre; 
-
-			for(var i=0;i<maxIndex;i++) {
+			for (var i=0;i<maxIndex;i++) {
 				while(indices.includes(index = Math.floor(Math.random() * gamme))) {} // Recréer une aléatoire si ça existe déja
 				indices.push(index);
 			}
@@ -118,6 +120,17 @@ if(Jeu.prototype.debuter === undefined){
 		this.resultats = resultats;
 	};
 }
+if(Jeu.prototype.afficherResultat === undefined){
+	Jeu.prototype.afficherResultat = function() {
+		console.log("************** Résultat du jeu **************\nPoints: " + jeuSansNew.points + "\n");
+		this.resultats.forEach(function(obj) {
+			console.log('---------------------------------------------' +
+			  '\nQuestion: '+ obj['question'] +
+	 		  '\nRéponse de l\'usager: '+ obj['reponseUsager'] +
+	 		  '\nRéponse correcte: '+ obj['reponseCorrecte'])})
+	};
+}
+// Example sans 'new' avec l'argument passé dans le constructeur
 var jeuSansNew = Jeu({
 				'Colombie-Britannique' : "Victoria",
 				'Alberta'	: "Edmonton",
@@ -130,21 +143,12 @@ var jeuSansNew = Jeu({
 				'Nouvelle-Écosse' : "Halifax",		
 				'Île-du-Prince-Édouard' : "Charlottetown"});
 jeuSansNew.debuter();
-console.log("*************** Résultat du jeu ***************\nPoints: " + jeuSansNew.points + "\n");
-jeuSansNew.resultats.forEach(function(obj) {
-console.log('---------------------------------------------' +
-		   '\nQuestion: '+ obj['question'] +
- 		  '\nRéponse de l\'usager: '+ obj['reponseUsager'] +
- 		  '\nRéponse correcte: '+ obj['reponseCorrecte'])})
+jeuSansNew.afficherResultat();
 
+// Example avec 'new' sans l'argument passé dans le constructeur
 var jeuAvecNew = new Jeu();
 jeuAvecNew.debuter();
-console.log("*************** Résultat du jeu ***************\nPoints: " + jeuAvecNew.points + "\n");
-jeuAvecNew.resultats.forEach(function(obj) {
-console.log('---------------------------------------------' +
-		   '\nQuestion: '+ obj['question'] +
- 		  '\nRéponse de l\'usager: '+ obj['reponseUsager'] +
- 		  '\nRéponse correcte: '+ obj['reponseCorrecte'])})
+jeuAvecNew.afficherResultat();
 
 
 
