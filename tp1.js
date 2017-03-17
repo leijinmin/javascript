@@ -1,4 +1,4 @@
-function TP1(description){
+function Jeu(description){
 	if(description === undefined || Object.keys(description) < 10) {
 		this.baseDeQuestions = {
 				'Colombie-Britannique' : "Victoria",
@@ -26,16 +26,16 @@ function TP1(description){
 };
 
 
-if(TP1.prototype.getLongeurQuestions === undefined){
-	TP1.prototype.getLongeurQuestions = function(){
+if(Jeu.prototype.getLongeurQuestions === undefined){
+	Jeu.prototype.getLongeurQuestions = function(){
 		// Obtenir la longeur de la liste des questions disponibles
 		var longeur = Object.keys(this.baseDeQuestions).length;
 
 		return longeur;	
 	};
 }
-if(TP1.prototype.setNumeroDeQuiz === undefined){
-	TP1.prototype.setNumeroDeQuiz = function(){
+if(Jeu.prototype.setNumeroDeQuiz === undefined){
+	Jeu.prototype.setNumeroDeQuiz = function(){
 		// Affecter le numéro des question à poser
 		var longeurQuestions = this.getLongeurQuestions(),
 			reponse = parseInt(prompt("Nombres maximum de questions","Entrez la valeur entre 1 et " + longeurQuestions));
@@ -46,8 +46,8 @@ if(TP1.prototype.setNumeroDeQuiz === undefined){
 		this.numeroDeQuiz = reponse;
 	};
 }
-if(TP1.prototype.getQuestions === undefined){
-	TP1.prototype.getQuestions = function(nombre) {
+if(Jeu.prototype.getQuestions === undefined){
+	Jeu.prototype.getQuestions = function(nombre) {
 		// Tirer les questions à poser
 		var parent = this,
 			maxIndex = this.numeroDeQuiz, 		  // Le numéro des questions à poser
@@ -74,8 +74,8 @@ if(TP1.prototype.getQuestions === undefined){
 		});	
 	};
 }
-if(TP1.prototype.debuterJeu === undefined){
-	TP1.prototype.debuterJeu = function(){
+if(Jeu.prototype.debuter === undefined){
+	Jeu.prototype.debuter = function(){
 		// Débuter le quiz
 		var questions,							// Questions à poser
 			erreurs = 0, 						// Numéro des errures faites
@@ -113,7 +113,7 @@ if(TP1.prototype.debuterJeu === undefined){
 		this.resultats = resultats;
 	};
 }
-var tp1 = new TP1({
+var jeu = new Jeu({
 				'Colombie-Britannique' : "Victoria",
 				'Alberta'	: "Edmonton",
 				'Saskatchewan' : "Regina",		
@@ -124,9 +124,9 @@ var tp1 = new TP1({
 				'Nouveau-Brunswick' : "Fredericton",		
 				'Nouvelle-Écosse' : "Halifax",		
 				'Île-du-Prince-Édouard' : "Charlottetown"});
-tp1.debuterJeu();
-console.log("Points: " + tp1.points + "\n");
-tp1.resultats.forEach(function(obj) {
+jeu.debuter();
+console.log("Points: " + jeu.points + "\n");
+jeu.resultats.forEach(function(obj) {
 console.log('---------------------------------------------' +
 		   '\nQuestion: '+ obj['question'] +
  		  '\nRéponse de l\'usager: '+ obj['reponseUsager'] +
