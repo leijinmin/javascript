@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@font-face {
+    font-family: 'digital-7regular';
+    src: url('../font/digital-7-webfont.woff2') format('woff2'),
+         url('../font/digital-7-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body{margin-top: 2rem; padding: 0; font-family:'Roboto', sans-serif; background-color: pink;} 
+
+@media (max-width: 630px)
+{
+	div.container {width:630px;}	
+}
+@media (min-width: 631px) and (max-width: 768px)
+{
+	div.container {width:90%;}	
+}
+@media (min-width: 769px) and (max-width: 991px)
+{
+	div.container {width:80%;}	
+}
+@media (min-width: 992px)
+{
+	div.container {width:600px;}	
+}
+
+h1, h2, h3, h4, h5, h6{color: black; text-align: center;}
+
+section{margin-top: 30px; margin-bottom: 30px;}
+
+select{display: inline; background-color: #555; color:#ddd; border-radius: 5px; border: #eee 1px solid;
+	padding: .5rem; height: 36px; }
+
+button{display: inline-block; min-width: 50px;min-height: 20px; background-color: #555; color:#ddd; height: 36px; 
+	border-radius: 5px; border: #eee 1px solid;
+	padding: .5rem; width: 140px;}
+
+.container{margin: 0 auto; width: 1170px;}
+.text-center{text-align: center;}
+.clearfix{clear: both; display: table;}
+
+
+#horloge h1:after{content: "Horloge";}
+
+#span_horloge {
+	font-family:'digital-7regular',sans-serif;  font-size: 2rem; color: #eee; background-color: #888; margin: auto;
+	text-shadow: 1px 1px 1px #000; display:block; width: 10rem; height: 3rem; line-height: 3rem; 
+	vertical-align: middle; text-align: center;
+ 	box-shadow: 2px 2px 5px #fff,-2px -2px 5px #fff;
+}
+#alarme h1:before{content: "Alarme ";}
+#alarme {text-align: center;}

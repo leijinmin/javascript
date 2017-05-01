@@ -1,0 +1,11 @@
+{
+	"son":true,
+	"id":"span_horloge",
+	"alarme":
+	[
+		{"nom":"relaxing_alarm_sky", "path":"mp3/relaxing_alarm_sky.mp3"},
+		{"nom":"morning_alarm", "path":"mp3/morning_alarm.mp3"},
+		{"nom":"mountain_stream", "path":"mp3/mountain_stream.mp3"},
+		{"nom":"piano_beat_mix", "path":"mp3/piano_beat_mix.mp3"}
+	]
+}
