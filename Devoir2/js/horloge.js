@@ -8,15 +8,18 @@
       script.type = 'text/javascript';
       parent.insertBefore(script,sibling); 
 
-      $(document).ready(function(){
+      window.onload = function(){
         
          class Horloge {
 
             constructor(json) {
               this.action = json.son;
               this.element = $("#"+json.id);
+
               $("body").append("<audio loop autoplay></audio>");
+
               this.alarme = json.alarme;
+
               this.on = function(eventType,fn) {
                 if(eventType === "alarme" && fn !== undefined)
                   fn();
@@ -50,14 +53,14 @@
             AfficherEtAlarmer() {
               this.element.text(this.HeureCourrante);
               if (this.heureAlarme !== undefined && 
-                      this.HeureAChaine(this.heureCourrante) === this.HeureAChaine(this.heureAlarme))
+                  this.HeureAChaine(this.heureCourrante) === this.HeureAChaine(this.heureAlarme))
                 this.on("alarme", this.faireAlarme(this.action));                  
              
             }
 
             faireAlarme(sonner) {              
               if(sonner) this.jouerAlarme();
-              else console.log("Alarme: " + this.HeureAChaine(this.heureAlarme));
+              else console.log("Alarme à : " + this.HeureAChaine(this.heureAlarme));
               this.heureAlarme = undefined; 
             }
 
@@ -73,42 +76,55 @@
 
           }
          
-         // Lire donnée de musique
-          $.getJSON( "data2.json", function(json) {
+         // Lire donnée de musique. 
+         // Mais pour tirer les données sauvegardées sur le disque, 
+         // on a besoin d'exécuter le programme sur le serveur.
+         // $.getJSON( "data2.json", function(json) {  
 
-            var horloge = new Horloge(json);
+            (function(json) {
+              var horloge = new Horloge(json);
+                       
+              setInterval(function(){
+                horloge.AfficherEtAlarmer();
+              },1000);
+         
+              $('#btn_ajouterAlarme').click(function(){
+                if($(this).html() === "Ajouter une alarme")
+                {
+                              
+                  heure = $("#select_alarmeHeures option:selected").text();
+                  minute = $("#select_alarmeMinutes option:selected").text();
+                  seconde = $("#select_alarmeSecondes option:selected").text();
+                  
+                  if(heure>0 || minute>0 ||seconde>0) {
+                      $("#alarme h1").html(horloge.ProgrammerNouvelleAlarme(parseInt(heure),
+                                                                            parseInt(minute),
+                                                                            parseInt(seconde)));
+                      $(this).html("Arrêter");
+                   }
+                  else 
+                    alert("Choisir le temps à faire l'alarme.");
+                }
+                else { 
+                  horloge.Arreter();
+                  $(this).html("Ajouter une alarme");
+                }
+              });// end $('#btn_ajouterAlarme').click(...)
+          })({
+                "son":true,
+                "id":"span_horloge",
+                "alarme":
+                [
+                  {"nom":"relaxing_alarm_sky", "path":"mp3/relaxing_alarm_sky.mp3"},
+                  {"nom":"morning_alarm", "path":"mp3/morning_alarm.mp3"},
+                  {"nom":"mountain_stream", "path":"mp3/mountain_stream.mp3"},
+                  {"nom":"piano_beat_mix", "path":"mp3/piano_beat_mix.mp3"}
+                ]
+            }); // end function(json)
+        
+        //  });// end $.getJSON(...)   
 
-                     
-            setInterval(function(){
-              horloge.AfficherEtAlarmer();
-            },1000);
-       
-            $('#btn_ajouterAlarme').click(function(){
-              if($(this).html() === "Ajouter une alarme")
-              {
-                            
-                heure = $("#select_alarmeHeures option:selected").text();
-                minute = $("#select_alarmeMinutes option:selected").text();
-                seconde = $("#select_alarmeSecondes option:selected").text();
-                
-                if(heure>0 || minute>0 ||seconde>0) {
-                    $("#alarme h1").html(horloge.ProgrammerNouvelleAlarme(parseInt(heure),
-                                                                         parseInt(minute),
-                                                                         parseInt(seconde)));
-                    $(this).html("Arrêter");
-                 }
-                else 
-                  alert("Choisir le temps à faire l'alarme.");
-              }
-              else { 
-                horloge.Arreter();
-                $(this).html("Ajouter une alarme");
-              }
-            });// end $('#btn_ajouterAlarme').click(...)
-
-          });// end $.getJSON(...)   
-
-      }); // end $(document).ready
+       }; // end window.onload
         
 })(); // end global function 
 
