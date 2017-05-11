@@ -51,5 +51,5 @@ button{display: inline-block; min-width: 50px;min-height: 20px; background-color
 	vertical-align: middle; text-align: center;
  	box-shadow: 2px 2px 5px #fff,-2px -2px 5px #fff;
 }
-#alarme h1:before{content: "Alarme ";}
+#alarme h1:before{content: "Alarme à ";}
 #alarme {text-align: center;}
