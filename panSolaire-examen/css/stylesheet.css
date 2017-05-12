@@ -1,0 +1,41 @@
+*{margin: 0; padding: 0;}
+
+body
+{
+	background-color: gray;
+}
+
+fieldset > legend
+{
+	font-weight: bolder;
+}
+
+fieldset > span
+{
+	color: blue;
+}
+
+label
+{
+	display: block;	
+}
+
+label > span
+{
+	color: blue;
+}
+
+label > input
+{
+	float: right;
+	clear: both;
+
+}
+
+.container
+{
+	margin: 0 auto;
+	width: 740px;
+	color: white;
+}
+

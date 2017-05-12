@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Panneaux solaire</title>
+	<link href="css/stylesheet.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+		<h1>Système énergie solaire</h1>
+		<form id="formulaire" name="formulaire" autocomplete="off">
+
+			<fieldset>
+				<legend>Panneaux solaires</legend>
+				<label>
+					<span>Energie par panneaux kWh</span>
+					<input id="input_energieParPanneaux" name="epp" required  autofocus>
+				</label>
+				<label>
+					<span>Nombre de panneaux</span>
+					<input id="input_nombreDePanneaux" type="number" name="ndp" required  min=0>
+				</label>
+				<label>
+					<span>Total energie générée en kWh</span>
+					<input id="input_totalEnergie" name="teg" readonly>
+				</label>
+			</fieldset>
+
+			<fieldset>
+				<legend>Consommation en kWh</legend>
+				<label>
+					<span>Télévision</span>
+					<input id="input_tv" name="tv" required >
+				</label>
+				<label>
+					<span>Radio</span>
+					<input id="input_radio" name="radio" required >
+				</label>
+				<label>
+					<span>Pompe à eau</span>
+					<input id="input_pompe" name="pompe" required >
+				</label>
+				<label>
+					<span>Éclairage</span>
+					<input id="input_eclairage" name="eclairage" required >
+				</label>
+				<label>
+					<span>Total energie consommée en kWh</span>
+					<input id="output_energieConsomme" name="tec" readonly>
+				</label>
+			</fieldset>
+
+			<fieldset>
+				<legend>Éfficacité énergitique</legend>
+				
+				<label>
+					<span>Bilan énergétique en kWh</span>
+					<input id="output_bilan" name="bilan " readonly>
+				</label>
+			</fieldset>
+			<!--<button id="button_submit" form="formulaire" type="submit" name="calculer">Calculer</button>
+-->			<button id="button_calculer" name="calculer">Calculer</button>
+			
+			<fieldset>
+				<legend>Optimisation</legend>
+
+				<label>
+					<span>Optimiser le nombre de panneaux solaires</span>
+					<input id="radio_opt" type="radio" name="opt_radio" value="NbPanneauxSolaires" checked>
+				</label>
+				<label>
+					<span>Optimiser l'énergie par panneau solaire</span>
+					<input id="radio_opt" type="radio" name="opt_radio" value="EnergiePanneau">
+				</label>
+				<!--<label>Optimiser le nombre de panneaux solaires</label>
+				<input id="radio_opt" type="radio" name="opt_radio" value="NbPanneauxSolaires" checked>
+				<label>Optimiser l'énergie par panneau solaire</label>
+				<input id="radio_opt" type="radio" name="opt_radio" value="EnergiePanneau">-->
+			</fieldset>
+			<button id="button_optimiser" name="optimiser">Optimiser</button>					
+		</form>
+	</div>
+
+	<!--<script src="js/systèmeEnergieSolaire.js"></script>-->
+	<script src="js/script.js"></script>
+</body>
+</html>
